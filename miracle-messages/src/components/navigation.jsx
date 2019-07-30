@@ -21,15 +21,6 @@ class Navigation extends Component {
         </ul>
       </div>
     </nav>
-            // <nav>
-                
-            //     <NavLink  to="/">Miracle Messages</NavLink>
-               
-            //         <NavLink  to="/volunteer-signup">Volunteer</NavLink>
-             
-            //         <NavLink  to="/signup">Sign Up</NavLink>
-              
-            // </nav>
          );
     }
 }
