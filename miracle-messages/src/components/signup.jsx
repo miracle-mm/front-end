@@ -16,7 +16,7 @@ class Signup extends Component {
       inputFields: {
         name: "",
         city: "",
-        usState: "AL",
+        state: "AL",
         phoneNumber: "",
         emailAddress: "",
         password: "",
@@ -104,7 +104,7 @@ class Signup extends Component {
           />
           <SelectBox
             label={"State"}
-            name={"usState"}
+            name={"state"}
             array={US_States}
             handleChange={handleChange}
           />

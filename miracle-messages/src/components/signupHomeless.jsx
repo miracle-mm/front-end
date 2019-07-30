@@ -16,7 +16,7 @@ class SignupHomeless extends Component {
         firstName: "",
         lastName: "",
         city:"",
-        usState:"AL",
+        state:"AL",
         zip:"",
         tellUs:"",
         boxes: {
@@ -98,7 +98,7 @@ class SignupHomeless extends Component {
             handleChange={handleChange}
             label={"City"}
           />
-            <SelectBox  label={"State"} name={"usState"} array={US_States}  handleChange={handleChange}/>
+            <SelectBox  label={"State"} name={"state"} array={US_States}  handleChange={handleChange}/>
 
           <label htmlFor="checkbox">Select all valid options for you</label>
           {this.state.messages.map((m, index) => {
