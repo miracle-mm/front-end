@@ -120,7 +120,8 @@ class Signup extends Component {
             );
           })}
            <InputBox name={"tellUs"} handleChange={handleChange}/>
-          <button type="button" className="btn btn-primary">Submit</button>
+          <button type="button" className="btn btn-md mb-2 btn-primary float-right">Submit</button>
+         
         </form>
       </div>
     );

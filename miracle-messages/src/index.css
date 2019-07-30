@@ -13,5 +13,16 @@ code {
     monospace;
 }
 .container{
+  height: 100%;
   color:white;
+}
+.form-control:focus{
+  color: white;
+  background-color: #515a63;
+  border-color: #515a63;
+}
+.form-control{
+  color: white;
+  background-color: #515a63;
+  border-color: #515a63;
 }

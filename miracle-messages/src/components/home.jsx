@@ -11,7 +11,11 @@ class Home extends Component {
         super(props);
         this.state = {  }
     }
+    componentDidMount(){
+        this.props.history.push("/login")
+    }
     render() { 
+        console.log(this.props);
         return ( 
             <Carousel>
             <div>

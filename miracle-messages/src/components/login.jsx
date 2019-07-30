@@ -23,6 +23,7 @@ class Login extends Component {
   render() {
     console.log(this.state.account);
     return (
+       
       <div className="container">
         <form onSubmit={this.handleSubmit}>
           <Input
@@ -37,9 +38,10 @@ class Login extends Component {
             handleChange={this.handleChange}
             label={"Password"}
           />
-          <button type="button" className="btn btn-primary">Enter</button>
+          <button type="button" className="btn btn-md mb-2 btn-primary float-right">Enter</button>
         </form>
       </div>
+  
     );
   }
 }
