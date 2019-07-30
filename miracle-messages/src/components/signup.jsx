@@ -7,73 +7,76 @@ import SelectBox from "./common/selectBox.jsx";
 import axios from "axios";
 
 class Signup extends Component {
-    
   constructor(props) {
     super(props);
-    this.ipstackAPI = `http://api.ipstack.com/check?access_key=${process.env.REACT_APP_IP_STACK_API}`;
+    this.ipstackAPI = `http://api.ipstack.com/check?access_key=${
+      process.env.REACT_APP_IP_STACK_API
+    }`;
     this.state = {
       inputFields: {
         name: "",
-        city:"",
-        usState:"AL",
+        city: "",
+        usState: "AL",
         phoneNumber: "",
         emailAddress: "",
-        password:"",
+        password: "",
         streetAddress: "",
-        tellUs:"",
+        tellUs: "",
         boxes: {
-          recieveMessages: false,
-          donate: false,
           volunteer: false,
-          findWork: false
-        },
-      
+          partnering: false,
+          media: false,
+          donate: false,
+          somethingElse: false,
+          join: false,
+          partneringGovt: false,
+          openings: false, 
+        }
       },
-      latlong:{
-        latitude:"",
-        longitude:"",
+      latlong: {
+        latitude: "",
+        longitude: ""
       },
       messages: [
-        {
-          msg: "Notify when members in my area are in need of help",
-          name: "recieveMessages"
-        },
-        { msg: "Donate Money/Food/Items to nearby members", name: "donate" },
-        { msg: "Volunteer at a local shelter", name: "volunteer" },
-        { msg: "Seek out job opportunities for members", name: "findWork" }
+        { msg: "Volunteering", name: "volunteer" },
+       { msg:"Partnering", name:"partnering" },
+       { msg:"Media coverage", name:"media" },
+       { msg:"Donating", name:"donate" },
+       { msg:"Something else", name:"somethingElse" },
+       { msg:"Joining the MM team", name:"join" },
+       { msg: "Partnering (for orgs/govt/etc)", name:"partneringGovt" },
+       { msg:"Openings at MM", name:"openings" },
       ]
     };
-
   }
   async componentDidMount() {
-    const {data} = await axios.get(this.ipstackAPI);
-    const latlong = {...this.state.latlong};
+    const { data } = await axios.get(this.ipstackAPI);
+    const latlong = { ...this.state.latlong };
     latlong.latitude = data.latitude;
     latlong.longitude = data.longitude;
-    this.setState({latlong});
+    this.setState({ latlong });
   }
- 
+
   handleCheck = e => {
     const { boxes } = this.state.inputFields;
     boxes[e.target.name] = !boxes[e.target.name];
     this.setState({ boxes });
   };
   handleChange = e => {
-   
     const { inputFields } = this.state;
     inputFields[e.target.name] = e.target.value;
-    
+
     this.setState({ inputFields });
   };
   handleSubmit = e => {
     e.stopPropagation();
-   
-  }
+  };
   render() {
-    const {handleChange, handleSubmit, handleCheck} = this;
-    console.log(this.state)
+    const { handleChange, handleSubmit, handleCheck } = this;
+    console.log(this.state);
     return (
       <div className="container">
+         <h1> By Laurem Ipsum you are making a difference  ipsum dolor oof naga is fulos nagris del otto vamin.</h1>
         <form onSubmit={handleSubmit}>
           <Input
             type={"text"}
@@ -99,7 +102,12 @@ class Signup extends Component {
             handleChange={handleChange}
             label={"City"}
           />
-            <SelectBox  label={"State"} name={"usState"} array={US_States}  handleChange={handleChange}/>
+          <SelectBox
+            label={"State"}
+            name={"usState"}
+            array={US_States}
+            handleChange={handleChange}
+          />
           <Input
             type={"password"}
             name={"password"}
@@ -119,9 +127,13 @@ class Signup extends Component {
               />
             );
           })}
-           <InputBox name={"tellUs"} handleChange={handleChange}/>
-          <button type="button" className="btn btn-md mb-2 btn-primary float-right">Submit</button>
-         
+          <InputBox name={"tellUs"} handleChange={handleChange} />
+          <button
+            type="button"
+            className="btn btn-md mb-2 btn-primary float-right"
+          >
+            Submit
+          </button>
         </form>
       </div>
     );
