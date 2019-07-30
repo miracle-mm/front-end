@@ -2,27 +2,36 @@ import React, { Component } from "react";
 import CheckBox from "./common/checkbox.jsx";
 import Input from "./common/input.jsx";
 import InputBox from "./common/inputBox.jsx";
+import US_States from "./common/unitedStates.js";
+import SelectBox from "./common/selectBox.jsx";
+import axios from "axios";
 
 class Signup extends Component {
+    
   constructor(props) {
     super(props);
-    
+    this.ipstackAPI = `http://api.ipstack.com/check?access_key=${process.env.REACT_APP_IP_STACK_API}`;
     this.state = {
       inputFields: {
-        fullName: "",
+        name: "",
+        city:"",
+        usState:"AL",
         phoneNumber: "",
         emailAddress: "",
         password:"",
-        passwordComfirm:"",
         streetAddress: "",
         tellUs:"",
-
         boxes: {
           recieveMessages: false,
           donate: false,
           volunteer: false,
           findWork: false
-        }
+        },
+      
+      },
+      latlong:{
+        latitude:"",
+        longitude:"",
       },
       messages: [
         {
@@ -36,12 +45,21 @@ class Signup extends Component {
     };
 
   }
+  async componentDidMount() {
+    const {data} = await axios.get(this.ipstackAPI);
+    const latlong = {...this.state.latlong};
+    latlong.latitude = data.latitude;
+    latlong.longitude = data.longitude;
+    this.setState({latlong});
+  }
+ 
   handleCheck = e => {
     const { boxes } = this.state.inputFields;
     boxes[e.target.name] = !boxes[e.target.name];
     this.setState({ boxes });
   };
   handleChange = e => {
+   
     const { inputFields } = this.state;
     inputFields[e.target.name] = e.target.value;
     
@@ -50,17 +68,16 @@ class Signup extends Component {
   handleSubmit = e => {
     e.stopPropagation();
    
-     
   }
   render() {
-    const {handleChange} = this;
-   
+    const {handleChange, handleSubmit, handleCheck} = this;
+    console.log(this.state)
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Input
             type={"text"}
-            name={"fullName"}
+            name={"name"}
             handleChange={handleChange}
             label={"Full Name"}
           />
@@ -78,28 +95,23 @@ class Signup extends Component {
           />
           <Input
             type={"text"}
-            name={"streetAddress"}
+            name={"city"}
             handleChange={handleChange}
-            label={"Street Address"}
+            label={"City"}
           />
+            <SelectBox  label={"State"} name={"usState"} array={US_States}  handleChange={handleChange}/>
           <Input
             type={"password"}
             name={"password"}
             handleChange={handleChange}
             label={"Password"}
           />
-          <Input
-            type={"password"}
-            name={"passwordComfirm"}
-            handleChange={handleChange}
-            label={"Type in password again"}
-          />
 
           <label htmlFor="checkbox">Select all valid options for you</label>
           {this.state.messages.map((m, index) => {
             return (
               <CheckBox
-                handleCheck={this.handleCheck}
+                handleCheck={handleCheck}
                 name={m.name}
                 key={index}
                 message={m.msg}
