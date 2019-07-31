@@ -4,7 +4,8 @@ import Input from "./common/input.jsx";
 import InputBox from "./common/inputBox.jsx";
 import US_States from "./common/unitedStates.js";
 import SelectBox from "./common/selectBox.jsx";
-import axios from "axios";
+import Button from "./common/button.jsx";
+import {getIP} from "./services/ipLocation.js";
 
 class SignupHomeless extends Component {
     
@@ -12,6 +13,9 @@ class SignupHomeless extends Component {
     super(props);
     this.ipstackAPI = `http://api.ipstack.com/check?access_key=${process.env.REACT_APP_IP_STACK_API}`;
     this.state = {
+      services:{
+        getLatLong:getIP,
+      },
       inputFields: {
         firstName: "",
         lastName: "",
@@ -43,13 +47,17 @@ class SignupHomeless extends Component {
     }
 
   }
-  async componentDidMount() {
-    const {data} = await axios.get(this.ipstackAPI);
-    const latlong = {...this.state.latlong};
-    latlong.latitude = data.latitude;
-    latlong.longitude = data.longitude;
-    this.setState({latlong});
-  }
+  componentDidMount() {
+    this.state.services.getLatLong().then(response => {
+     const { data } = response;
+     console.log(data);
+     const latlong = { ...this.state.latlong };
+     latlong.latitude = data.latitude;
+     latlong.longitude = data.longitude;
+     this.setState({ latlong });
+   });
+ 
+ }
  
   handleCheck = e => {
     const { boxes } = this.state.inputFields;
@@ -69,7 +77,6 @@ class SignupHomeless extends Component {
   }
   render() {
     const {handleChange, handleSubmit, handleCheck} = this;
-    console.log(this.state)
     return (
       <div className="container">
           <h1>Laurem Ipsum on the right track to ipsum dolor oof naga is fulos nagris del otto vamin.</h1>
@@ -113,7 +120,7 @@ class SignupHomeless extends Component {
             );
           })}
            <InputBox name={"tellUs"} handleChange={handleChange}/>
-          <button type="button" className="btn btn-md mb-2 btn-primary float-right">Submit</button>
+          <Button type="button" className="btn btn-md mb-2 btn-primary float-right">Submit</Button>
          
         </form>
       </div>

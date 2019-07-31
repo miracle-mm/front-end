@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Input from "./common/input.jsx";
+import Button from "./common/button.jsx";
 class Login extends Component {
   constructor() {
       super();
@@ -21,7 +22,7 @@ class Login extends Component {
    
   }
   render() {
-    console.log(this.state.account);
+
     return (
        
       <div className="container">
@@ -38,7 +39,7 @@ class Login extends Component {
             handleChange={this.handleChange}
             label={"Password"}
           />
-          <button type="button" className="btn btn-md mb-2 btn-primary float-right">Enter</button>
+             <Button type="button" className="btn btn-md mb-2 btn-primary float-right">Enter</Button>
         </form>
       </div>
   

@@ -4,15 +4,16 @@ import Input from "./common/input.jsx";
 import InputBox from "./common/inputBox.jsx";
 import US_States from "./common/unitedStates.js";
 import SelectBox from "./common/selectBox.jsx";
-import axios from "axios";
+import Button from "./common/button.jsx";
+import {getIP} from "./services/ipLocation.js";
 
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.ipstackAPI = `http://api.ipstack.com/check?access_key=${
-      process.env.REACT_APP_IP_STACK_API
-    }`;
     this.state = {
+      services:{
+        getLatLong:getIP,
+      },
       inputFields: {
         name: "",
         city: "",
@@ -30,7 +31,7 @@ class Signup extends Component {
           somethingElse: false,
           join: false,
           partneringGovt: false,
-          openings: false, 
+          openings: false
         }
       },
       latlong: {
@@ -39,23 +40,30 @@ class Signup extends Component {
       },
       messages: [
         { msg: "Volunteering", name: "volunteer" },
-       { msg:"Partnering", name:"partnering" },
-       { msg:"Media coverage", name:"media" },
-       { msg:"Donating", name:"donate" },
-       { msg:"Something else", name:"somethingElse" },
-       { msg:"Joining the MM team", name:"join" },
-       { msg: "Partnering (for orgs/govt/etc)", name:"partneringGovt" },
-       { msg:"Openings at MM", name:"openings" },
+        { msg: "Partnering", name: "partnering" },
+        { msg: "Media coverage", name: "media" },
+        { msg: "Donating", name: "donate" },
+        { msg: "Something else", name: "somethingElse" },
+        { msg: "Joining the MM team", name: "join" },
+        { msg: "Partnering (for orgs/govt/etc)", name: "partneringGovt" },
+        { msg: "Openings at MM", name: "openings" }
       ]
     };
   }
-  async componentDidMount() {
-    const { data } = await axios.get(this.ipstackAPI);
-    const latlong = { ...this.state.latlong };
-    latlong.latitude = data.latitude;
-    latlong.longitude = data.longitude;
-    this.setState({ latlong });
+ 
+
+  componentDidMount() {
+     this.state.services.getLatLong().then(response => {
+      const { data } = response;
+      console.log(data);
+      const latlong = { ...this.state.latlong };
+      latlong.latitude = data.latitude;
+      latlong.longitude = data.longitude;
+      this.setState({ latlong });
+    });
+  
   }
+
 
   handleCheck = e => {
     const { boxes } = this.state.inputFields;
@@ -73,10 +81,14 @@ class Signup extends Component {
   };
   render() {
     const { handleChange, handleSubmit, handleCheck } = this;
-    console.log(this.state);
+    console.log(this.state.latlong);
     return (
       <div className="container">
-         <h1> By Laurem Ipsum you are making a difference  ipsum dolor oof naga is fulos nagris del otto vamin.</h1>
+        <h1>
+          {" "}
+          By Laurem Ipsum you are making a difference ipsum dolor oof naga is
+          fulos nagris del otto vamin.
+        </h1>
         <form onSubmit={handleSubmit}>
           <Input
             type={"text"}
@@ -128,12 +140,12 @@ class Signup extends Component {
             );
           })}
           <InputBox name={"tellUs"} handleChange={handleChange} />
-          <button
+          <Button
             type="button"
             className="btn btn-md mb-2 btn-primary float-right"
           >
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     );

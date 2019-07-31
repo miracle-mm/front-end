@@ -9,30 +9,31 @@ import image4 from "../images/ali-morshedlou.jpg"
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            
+         }
     }
     componentDidMount(){
         this.props.history.push("/login")
     }
     render() { 
-        console.log(this.props);
+
         return ( 
             <Carousel>
             <div>
-                <img src={image1} />
+                <img src={image1} alt="Homeless" />
                 <p className="legend">Over half a million people are homeless.</p>
             </div>
             <div>
-                <img src={image2} />
+                <img src={image2}  alt="Homeless"/>
                 <p className="legend">One in five homeless people suffers from untreated severe mental illness.</p>
             </div>
             <div>
-                <img src={image3} />
+                <img src={image3}  alt="Homeless"/>
                 <p className="legend">The government does not help as much as you think.</p>
             </div>
-            
             <div>
-                <img  src={image4}  />
+                <img  src={image4}  alt="Homeless" />
                 <p className="legend">Help a person experiencing homelessness today!</p>
             </div>
         </Carousel>
