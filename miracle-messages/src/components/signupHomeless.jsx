@@ -73,7 +73,7 @@ class SignupHomeless extends Component {
   };
   handleSubmit = e => {
     e.stopPropagation();
-   
+
   }
   render() {
     const {handleChange, handleSubmit, handleCheck} = this;

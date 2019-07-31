@@ -26,6 +26,7 @@ class Login extends Component {
     .then(response => {
       console.log(response);
       localStorage.setItem("token", response.data.token);
+      this.props.history.push('/dashboard') 
     }).catch(error => {
       console.log(error);
     })

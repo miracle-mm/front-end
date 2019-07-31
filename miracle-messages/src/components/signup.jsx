@@ -85,6 +85,7 @@ class Signup extends Component {
     axios.post("https://miracle-messages-map.herokuapp.com/api/auth/register/", newPartner)
     .then(response => {
       console.log(response);
+      this.props.history.push('/login')
     }).catch(error =>{
         console.log(error);
     })
