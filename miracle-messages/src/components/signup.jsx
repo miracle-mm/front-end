@@ -53,14 +53,14 @@ class Signup extends Component {
  
 
   componentDidMount() {
+    
      this.state.services.getLatLong().then(response => {
       const { data } = response;
-      console.log(data);
       const latlong = { ...this.state.latlong };
       latlong.latitude = data.latitude;
       latlong.longitude = data.longitude;
       this.setState({ latlong });
-    });
+    })
   
   }
 
@@ -81,7 +81,7 @@ class Signup extends Component {
   };
   render() {
     const { handleChange, handleSubmit, handleCheck } = this;
-    console.log(this.state.latlong);
+    console.log("signup.jsx state", this.state);
     return (
       <div className="container">
         <h1>

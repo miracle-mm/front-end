@@ -50,7 +50,7 @@ class SignupHomeless extends Component {
   componentDidMount() {
     this.state.services.getLatLong().then(response => {
      const { data } = response;
-     console.log(data);
+ 
      const latlong = { ...this.state.latlong };
      latlong.latitude = data.latitude;
      latlong.longitude = data.longitude;
@@ -77,6 +77,7 @@ class SignupHomeless extends Component {
   }
   render() {
     const {handleChange, handleSubmit, handleCheck} = this;
+    console.log("signupHomeless.jsx state", this.state);
     return (
       <div className="container">
           <h1>Laurem Ipsum on the right track to ipsum dolor oof naga is fulos nagris del otto vamin.</h1>
