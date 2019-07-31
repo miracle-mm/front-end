@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Input from "./common/input.jsx";
 import Button from "./common/button.jsx";
+import axios from "axios";
 class Login extends Component {
   constructor() {
       super();
@@ -18,8 +19,16 @@ class Login extends Component {
     this.setState({ account });
   };
   handleSubmit = e => {
-    e.stopPropagation();
-   
+    e.preventDefault();
+    const login = this.state.account;
+    console.log(login);    
+    axios.post("https://miracle-messages-map.herokuapp.com/api/auth/login", login)
+    .then(response => {
+      console.log(response);
+      localStorage.setItem("token", response.data.token);
+    }).catch(error => {
+      console.log(error);
+    })
   }
   render() {
 
@@ -39,7 +48,7 @@ class Login extends Component {
             handleChange={this.handleChange}
             label={"Password"}
           />
-             <Button type="button" className="btn btn-md mb-2 btn-primary float-right">Enter</Button>
+             <Button type="submit" className="btn btn-md mb-2 btn-primary float-right">Enter</Button>
         </form>
       </div>
   

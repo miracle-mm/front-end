@@ -6,6 +6,8 @@ import US_States from "./common/unitedStates.js";
 import SelectBox from "./common/selectBox.jsx";
 import Button from "./common/button.jsx";
 import {getIP} from "./services/ipLocation.js";
+import axios from "axios";
+
 
 class Signup extends Component {
   constructor(props) {
@@ -18,11 +20,8 @@ class Signup extends Component {
         name: "",
         city: "",
         state: "AL",
-        phoneNumber: "",
-        emailAddress: "",
+        email: "",
         password: "",
-        streetAddress: "",
-        tellUs: "",
         boxes: {
           volunteer: false,
           partnering: false,
@@ -76,8 +75,19 @@ class Signup extends Component {
 
     this.setState({ inputFields });
   };
+  //weffwefw
   handleSubmit = e => {
-    e.stopPropagation();
+    e.preventDefault();
+    const {name, city, state, email, password } = this.state.inputFields;
+    const {latitude, longitude} = this.state.latlong;
+    const newPartner = {name, city, state, email,password ,latitude, longitude};
+    console.log(newPartner);
+    axios.post("https://miracle-messages-map.herokuapp.com/api/auth/register/", newPartner)
+    .then(response => {
+      console.log(response);
+    }).catch(error =>{
+        console.log(error);
+    })
   };
   render() {
     const { handleChange, handleSubmit, handleCheck } = this;
@@ -98,16 +108,11 @@ class Signup extends Component {
           />
           <Input
             type={"email"}
-            name={"emailAddress"}
+            name={"email"}
             handleChange={handleChange}
             label={"Email"}
           />
-          <Input
-            type={"phone"}
-            name={"phoneNumber"}
-            handleChange={handleChange}
-            label={"phone"}
-          />
+    
           <Input
             type={"text"}
             name={"city"}
@@ -140,8 +145,10 @@ class Signup extends Component {
             );
           })}
           <InputBox name={"tellUs"} handleChange={handleChange} />
+
+         
           <Button
-            type="button"
+            type="submit"
             className="btn btn-md mb-2 btn-primary float-right"
           >
             Submit
