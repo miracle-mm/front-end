@@ -79,7 +79,6 @@ class SignupHomeless extends Component {
     
     //axiosWithAuth
 const {firstName, lastName, city, state, zip, } = this.state.inputFields;
-zip = parseInt(zip);
 const {latitude, longitude} = this.state.latlong;
 const newHomeless = { firstName, lastName, city, state, zip, latitude, longitude};
 console.log(newHomeless);
