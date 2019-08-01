@@ -15,8 +15,7 @@ const AnyReactComponent = ({ text }) => (
         width: "30px",
         height: "30px",
         backgroundColor: "red",
-        textAlign: "center"
-
+        textAlign: "center",
       }}
     />
     <div style={{
