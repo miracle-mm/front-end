@@ -6,6 +6,8 @@ import US_States from "./common/unitedStates.js";
 import SelectBox from "./common/selectBox.jsx";
 import Button from "./common/button.jsx";
 import {getIP} from "./services/ipLocation.js";
+import axiosWithAuth from "./services/axiosWithAuth.js";
+import axios from "axios";
 
 class SignupHomeless extends Component {
     
@@ -20,8 +22,9 @@ class SignupHomeless extends Component {
         firstName: "",
         lastName: "",
         city:"",
+        country:"",
         state:"AL",
-        zip:"",
+        zip:null,
         tellUs:"",
         boxes: {
           sendMessages: false,
@@ -50,12 +53,12 @@ class SignupHomeless extends Component {
   componentDidMount() {
     this.state.services.getLatLong().then(response => {
      const { data } = response;
- 
      const latlong = { ...this.state.latlong };
      latlong.latitude = data.latitude;
      latlong.longitude = data.longitude;
      this.setState({ latlong });
-   });
+
+   })
  
  }
  
@@ -72,15 +75,25 @@ class SignupHomeless extends Component {
     this.setState({ inputFields });
   };
   handleSubmit = e => {
-    e.stopPropagation();
+    e.preventDefault();
+    //axiosWithAuth
+const {firstName, lastName, city, state, zip, } = this.state.inputFields;
+const {latitude, longitude} = this.state.latlong;
+const newHomeless = { firstName, lastName, city, state, zip, latitude, longitude};
+console.log(newHomeless);
+axios.post("https://miracle-messages-map.herokuapp.com/api/homeless", newHomeless)
+.then(response => {
+console.log(response);
 
+}).catch(error =>{
+console.log(error);
+})
   }
   render() {
     const {handleChange, handleSubmit, handleCheck} = this;
     console.log("signupHomeless.jsx state", this.state);
     return (
       <div className="container">
-          <h1>Laurem Ipsum on the right track to ipsum dolor oof naga is fulos nagris del otto vamin.</h1>
         <form onSubmit={handleSubmit}>
           <Input
             type={"text"}
@@ -96,7 +109,7 @@ class SignupHomeless extends Component {
           />
           <Input
             type={"number"}
-            name={"zipCode"}
+            name={"zip"}
             handleChange={handleChange}
             label={"Zip Code"}
           />
@@ -105,6 +118,12 @@ class SignupHomeless extends Component {
             name={"city"}
             handleChange={handleChange}
             label={"City"}
+          />
+           <Input
+            type={"text"}
+            name={"country"}
+            handleChange={handleChange}
+            label={"County"}
           />
             <SelectBox  label={"State"} name={"state"} array={US_States}  handleChange={handleChange}/>
 

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { getIP } from "./services/ipLocation.js";
 import axios from "axios";
+import SignupHomeless from "./signupHomeless.jsx";
+
 
 const AnyReactComponent = ({ text }) => (
   <div>
@@ -20,7 +22,7 @@ const AnyReactComponent = ({ text }) => (
     <div style={{
         position:"absolute",
         padddingLeft:"10px",
-        fontSize:"40px",
+        fontSize:"20px",
     }}>{text}</div>
   </div>
 );
@@ -80,6 +82,7 @@ class HomelessDashboard extends Component {
             );
           })}
         </GoogleMapReact>
+        <SignupHomeless />
       </div>
     );
   }

@@ -16,9 +16,6 @@ class Navigation extends Component {
             <NavLink className="nav-link" to="/login">Log in</NavLink >
           </li>
           <li className="nav-item active">
-            <NavLink className="nav-link" to="/help">I Need Help</NavLink >
-          </li>
-          <li className="nav-item active">
             <NavLink className="nav-link" to="/volunteer-signup">Volunteer</NavLink >
           </li>
         </ul>

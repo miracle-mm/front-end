@@ -96,9 +96,8 @@ class Signup extends Component {
     return (
       <div className="container">
         <h1>
-          {" "}
-          By Laurem Ipsum you are making a difference ipsum dolor oof naga is
-          fulos nagris del otto vamin.
+   
+          By Joining our team you are making a difference!
         </h1>
         <form onSubmit={handleSubmit}>
           <Input

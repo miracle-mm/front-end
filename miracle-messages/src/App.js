@@ -13,11 +13,12 @@ function App() {
   return (
     <React.Fragment>
       <Navigation/>
+        <Route  path="/" component={Home} />
         <Route path="/dashboard" component={HomelessDashboard}/>
         <Route path="/volunteer-signup" component={Signup} />
+
         <Route path="/help" component={SignupHomeless} />
         <Route path="/login"  component={Login}/>
-        <Route exact path="/" component={Home} />
         {/* <Route exact path="/account" component={}/> */}
 
       
