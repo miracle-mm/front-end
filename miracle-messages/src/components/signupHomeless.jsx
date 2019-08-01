@@ -84,7 +84,7 @@ console.log(newHomeless);
 axios.post("https://miracle-messages-map.herokuapp.com/api/homeless", newHomeless)
 .then(response => {
 console.log(response);
-
+this.props.history.push("/dashboard");
 }).catch(error =>{
 console.log(error);
 })
@@ -123,7 +123,7 @@ console.log(error);
             type={"text"}
             name={"country"}
             handleChange={handleChange}
-            label={"County"}
+            label={"Country"}
           />
             <SelectBox  label={"State"} name={"state"} array={US_States}  handleChange={handleChange}/>
 
