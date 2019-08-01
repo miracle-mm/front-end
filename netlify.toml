@@ -1,9 +1,17 @@
+ID = "648cf880-9d4d-4996-8113-8d24a0e54098"
+
+# Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
+
 [build]
-  base = "/miracle-messages"
-  publish = "miracle-messages/build"
-  command = "npm build"
-  [[redirects]]
+  # This is the directory to change to before starting a build.
+  base    = "miracle-messages/"
+  # NOTE: This is where we will look for package.json/.nvmrc/etc, not root.
+  # This is the directory that you are publishing from (relative to root of your repo)
+  publish = "miracle-messages/build/"
+  # This will be your default build command
+  command = "yarn build" 
+
+[[redirects]]
     from = "/*"
     to = "/index.html"
-    status = 200
-  
+status = 200
