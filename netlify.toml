@@ -1,0 +1,9 @@
+[build]
+  base = "/miracle-messages"
+  publish = "miracle-messages/build"
+  command = "npm build"
+  [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
+  
