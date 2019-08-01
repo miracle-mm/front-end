@@ -51,17 +51,17 @@ class Signup extends Component {
   }
  
 
-  componentDidMount() {
+  // componentDidMount() {
     
-     this.state.services.getLatLong().then(response => {
-      const { data } = response;
-      const latlong = { ...this.state.latlong };
-      latlong.latitude = data.latitude;
-      latlong.longitude = data.longitude;
-      this.setState({ latlong });
-    })
+  //    this.state.services.getLatLong().then(response => {
+  //     const { data } = response;
+  //     const latlong = { ...this.state.latlong };
+  //     latlong.latitude = data.latitude;
+  //     latlong.longitude = data.longitude;
+  //     this.setState({ latlong });
+  //   })
   
-  }
+  // }
 
 
   handleCheck = e => {

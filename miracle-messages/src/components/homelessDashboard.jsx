@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import { getIP } from "./services/ipLocation.js";
+// import { getIP } from "./services/ipLocation.js";
 import axios from "axios";
 import SignupHomeless from "./signupHomeless.jsx";
 
@@ -39,17 +39,17 @@ class HomelessDashboard extends Component {
     };
   }
   componentDidMount() {
-    getIP()
-      .then(response => {
-        const center = { ...this.state.center };
-        const { latitude, longitude } = response.data;
-        center.lat = latitude;
-        center.lng = longitude;
-        this.setState({ center });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // getIP()
+    //   .then(response => {
+    //     const center = { ...this.state.center };
+    //     const { latitude, longitude } = response.data;
+    //     center.lat = latitude;
+    //     center.lng = longitude;
+    //     this.setState({ center });
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
     axios
       .get("https://miracle-messages-map.herokuapp.com/api/partners")
       .then(response => {

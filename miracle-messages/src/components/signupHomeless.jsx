@@ -15,9 +15,9 @@ class SignupHomeless extends Component {
     super(props);
     this.ipstackAPI = `http://api.ipstack.com/check?access_key=${process.env.REACT_APP_IP_STACK_API}`;
     this.state = {
-      services:{
-        getLatLong:getIP,
-      },
+      // services:{
+      //   getLatLong:getIP,
+      // },
       inputFields: {
         firstName: "",
         lastName: "",
@@ -50,17 +50,17 @@ class SignupHomeless extends Component {
     }
 
   }
-  componentDidMount() {
-    this.state.services.getLatLong().then(response => {
-     const { data } = response;
-     const latlong = { ...this.state.latlong };
-     latlong.latitude = data.latitude;
-     latlong.longitude = data.longitude;
-     this.setState({ latlong });
+//   componentDidMount() {
+//     this.state.services.getLatLong().then(response => {
+//      const { data } = response;
+//      const latlong = { ...this.state.latlong };
+//      latlong.latitude = data.latitude;
+//      latlong.longitude = data.longitude;
+//      this.setState({ latlong });
 
-   })
+//    })
  
- }
+//  }
  
   handleCheck = e => {
     const { boxes } = this.state.inputFields;
