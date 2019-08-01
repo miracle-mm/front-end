@@ -31,8 +31,8 @@ class HomelessDashboard extends Component {
     super();
     this.state = {
       center: {
-        lat: null,
-        lng: null
+        lat: 37.748512, 
+        lng:-122.432525,
       },
       partners: [],
       zoom: 14
