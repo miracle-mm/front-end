@@ -34,8 +34,8 @@ class Signup extends Component {
         }
       },
       latlong: {
-        latitude: "",
-        longitude: ""
+        latitude: null,
+        longitude: null
       },
       messages: [
         { msg: "Volunteering", name: "volunteer" },

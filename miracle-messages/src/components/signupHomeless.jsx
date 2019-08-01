@@ -35,8 +35,8 @@ class SignupHomeless extends Component {
       
       },
       latlong:{
-        latitude:"",
-        longitude:"",
+        latitude:null,
+        longitude:null,
       },
       messages: [
         {
