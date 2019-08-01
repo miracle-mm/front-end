@@ -5,7 +5,7 @@ import image1 from "../images/matt-collamer.jpg";
 import image2 from "../images/steve-knutson.jpg"
 import image3 from "../images/john-moeses.jpg";
 import image4 from "../images/ali-morshedlou.jpg";
-import SignupHomeless from "./signupHomeless.jsx";
+
 class Home extends Component {
     constructor(props) {
         super(props);

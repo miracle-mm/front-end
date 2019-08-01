@@ -16,8 +16,9 @@ function App() {
         <Route  path="/" component={Home} />
         <Route path="/dashboard" component={HomelessDashboard}/>
         <Route path="/volunteer-signup" component={Signup} />
-
+        
         <Route path="/help" component={SignupHomeless} />
+        <Route path="/signup" component={SignupHomeless} />
         <Route path="/login"  component={Login}/>
         {/* <Route exact path="/account" component={}/> */}
 
