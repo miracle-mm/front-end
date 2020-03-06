@@ -11,3 +11,7 @@ currently there are 5 main things you can do in this application
 4. login
 5. view all members on a map (according to your ip address which then gets your latitude and lonigtude)
 # this react application is for demonstration purposes only please do not use as a real app thank you.
+Site working at: https://miraclemessages.netlify.com
+
+![mm](mm.PNG)
+
