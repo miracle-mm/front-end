@@ -5,8 +5,6 @@ import InputBox from "./common/inputBox.jsx";
 import US_States from "./common/unitedStates.js";
 import SelectBox from "./common/selectBox.jsx";
 import Button from "./common/button.jsx";
-import {getIP} from "./services/ipLocation.js";
-import axiosWithAuth from "./services/axiosWithAuth.js";
 import axios from "axios";
 
 class SignupHomeless extends Component {
